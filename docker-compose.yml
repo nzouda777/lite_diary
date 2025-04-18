@@ -1,0 +1,53 @@
+version: '3.8'  # Specify docker-compose version
+
+services:
+  # PHP Service
+  app:
+    build:
+      context: .  # Build context is the current directory
+      dockerfile: Dockerfile  # Use the Dockerfile we'll create next
+    container_name: laravel_app  # Name of the container
+    restart: unless-stopped  # Restart policy
+    working_dir: /var/www/  # Set working directory
+    volumes:
+      - ./:/var/www  # Mount project directory
+    networks:
+      - app_network  # Connect to our custom network
+
+  # Nginx Service
+  nginx:
+    image: nginx:alpine  # Use lightweight nginx image
+    container_name: laravel_nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"  # Map host port 8000 to container port 80
+    volumes:
+      - ./:/var/www  # Mount project directory
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/  # Mount nginx configuration
+    networks:
+      - app_network
+
+  # MySQL Service
+  db:
+    image: mysql:8.0  # Use MySQL 8.0
+    container_name: laravel_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: laravel_db  # Database name
+      MYSQL_ROOT_PASSWORD: root  # Root password
+      MYSQL_PASSWORD: root  # User password
+      #MYSQL_USER: root  # Database user
+    volumes:
+      - dbdata:/var/lib/mysql  # Persist database data
+    ports:
+      - "3306:3306"  # Map MySQL port
+    networks:
+      - app_network
+
+networks:
+  app_network:  # Define our custom network
+    driver: bridge
+
+volumes:
+  dbdata:  # Define volume for database persistence
+    driver: local
