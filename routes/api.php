@@ -5,7 +5,7 @@ use App\Http\Controllers\StoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class,'register'])->name('register');
-Route::post('', [AuthController::class,'login'])->name('login');
+Route::post('/login', [AuthController::class,'login'])->name('login');
 
 Route::get('/stories/public', [StoryController::class,'publicStories'])->name('public_stories');
 
@@ -17,4 +17,4 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/stories', [StoryController::class,'store'])->name('store');
     Route::put('/stories/{id}', [StoryController::class,'update'])->name('update');
     Route::delete('/stories/{id}', [StoryController::class, 'destroy'])->name('destroy');
-})
+});
