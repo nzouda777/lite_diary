@@ -13,7 +13,7 @@ class StoryController extends Controller
     }
 
     public function publicStories() {
-        return Story::where("is_public", true)->with('user:id, name')->latest()->get();
+        return Story::where("is_public", true)->with('user:id,pseudo')->latest()->get();
     }
 
     public function show($id) {
@@ -30,7 +30,8 @@ class StoryController extends Controller
         $validate = $request->validate([
             'title' => 'required|string|max:100',
             'content' => 'required|string',
-            'is_public' => 'boolean'
+            'is_public' => 'boolean',
+            'slug' => 'string'
         ]);
         return auth()->user()->stories()->create($validate);
     }
