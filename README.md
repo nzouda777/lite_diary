@@ -210,3 +210,10 @@ Stores story data with the following fields:
 - `slug`: URL-friendly identifier
 - `created_at`: Creation timestamp
 - `updated_at`: Last update timestamp
+
+
+## Roadmap
+
+- [ ] Intégration de l'authentification par réseaux sociaux.
+- [ ] Ajout de la pagination pour les histoires.
+- [ ] Amélioration de l'interface utilisateur avec une application front-end.
