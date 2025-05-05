@@ -5,6 +5,7 @@ use App\Http\Controllers\StoryController;
 use Illuminate\Support\Facades\Route;
 
 
+
 // Route pour l'inscription d'un utilisateur
 Route::post('/register', [AuthController::class, 'signup'])->name('register');
 
