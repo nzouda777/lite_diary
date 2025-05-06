@@ -16,7 +16,7 @@ A Laravel-based RESTful API for managing stories with Docker containerization. T
 
 This application provides a RESTful API for managing stories. Users can register, login, create stories, and manage their visibility (public or private). The application is containerized using Docker for easy deployment and development.
 
-## Prerequisites
+## prerequisites
 
 - Docker and Docker Compose
 - Git (for cloning the repository)
@@ -159,8 +159,8 @@ The API uses Laravel Sanctum for token-based authentication.
 **Response:**
 ```json
 {
-  "access_token": "token_string",
-  "token_type": "Bearer"
+  "access_token": "token_string", // Jeton d'accès temporaire utilisé pour authentifier les requêtes suivantes.
+  "token_type": "Bearer" // Indique le type de jeton, ici "Bearer", un standard courant pour l'authentification.
 }
 ```
 
@@ -179,14 +179,14 @@ The API uses Laravel Sanctum for token-based authentication.
 **Response:**
 ```json
 {
-  "access_token": "token_string",
-  "token_type": "Bearer",
-  "user": {
-    "id": 1,
-    "name": "User Name",
-    "email": "user@example.com",
-    "pseudo": "username",
-    "phone_number": "1234567890"
+  "access_token": "token_string", // Jeton d'accès pour les requêtes authentifiées.
+  "token_type": "Bearer", // Type du jeton d'accès.
+  "user": { // Objet contenant les informations de l'utilisateur connecté.
+    "id": 1, // Identifiant unique de l'utilisateur dans la base de données.
+    "name": "User Name", // Nom complet de l'utilisateur.
+    "email": "user@example.com", // Adresse e-mail de l'utilisateur.
+    "pseudo": "username", // Pseudonyme de l'utilisateur.
+    "phone_number": "1234567890" // Numéro de téléphone de l'utilisateur.
   }
 }
 ```
